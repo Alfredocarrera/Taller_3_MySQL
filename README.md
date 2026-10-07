@@ -6,11 +6,14 @@
 A continuación se representa la arquitectura relacional del sistema de gestión veterinaria, estructurada desde los registros primarios hasta las transacciones y tratamientos.
 
 ### Diagrama de Relaciones (ERD)
+<p align="center">
+  <img src="Imagenes/Veterinaria_MimejorAmigo.png" alt="Diagrama ERD" width="600">
+</p>
 
 ```mermaid
 Diagrama E-R
 
-    ![Diagrama E-R de la Base de Datos](Imagenes/Veterinaria_MimejorAmigo.png)
+
 
     DUEÑOS ||--o{ DIRECCION : "registra / posee"
     DUEÑOS ||--o{ MASCOTA : "es dueño de"
@@ -18,11 +21,16 @@ Diagrama E-R
     SERVICIOS ||--o{ VISITAS : "se incluye en"
     VISITAS ||--o{ TRATAMIENTO : "genera / prescribe"
 
+La tabla dueños contendra la informacion de los dueños que relacionara con sus mascotas, como llave primaria se seleccion la cedula ya que es un documento no tranferible y unico por eso se tomo como la Primary Key.
+
     DUEÑOS {
         VARCHAR_200 Cedula PK
         VARCHAR_400 nombre_completo
         VARCHAR_45 telefono
-    }
+    } 
+
+La creacion de la tabla direccion se debe un mejoramiento de la base de datos obteniendo la informacion de la direccion del dueño por si este tenga mas de una direccion. La llave primaria es auto incremental segun se ingresen recursos. 
+
 
     DIRECCION {
         INT id_Direccion PK
@@ -33,6 +41,8 @@ Diagrama E-R
         VARCHAR_100 Numero_de_casa
         VARCHAR_200 Dueños_Cedula FK
     }
+
+Tabla Mascota contendra la informacion de la mascota y tiene relacion con dueños y visitas. La llave primaria es auto incremental.
 
     MASCOTA {
         INT id_Mascota PK
@@ -45,12 +55,16 @@ Diagrama E-R
         VARCHAR_200 Dueños_Cedula FK
     }
 
+Tabla servicio contendra la informacion de los servicios y tiene relacion con visitas. La llave primaria es auto incremental.
+
     SERVICIOS {
         INT id_Servicio PK
         VARCHAR_200 Nombre_de_Servicios
         VARCHAR_300 Descripcion_servicio
         DECIMAL_100 Precio
     }
+
+Tabla Visitas contendra la informacion de la mascota que visiten la veterinaria y tiene relacion con Servicios. La llave primaria es auto incremental.
 
     VISITAS {
         INT id_Visita PK
@@ -59,6 +73,8 @@ Diagrama E-R
         INT Servicios_id_Servicio FK
     }
 
+Tabla Tratamiento contendra la informacion de los tratamientos de la mascota y tiene relacion con visitas. La llave primaria es auto incremental.
+    
     TRATAMIENTO {
         INT id_Tratamiento PK
         VARCHAR_100 Nombre_tratamiento
