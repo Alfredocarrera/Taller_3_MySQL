@@ -10,6 +10,7 @@ A continuación se representa la arquitectura relacional del sistema de gestión
 ```mermaid
 Diagrama E-R
 
+    ![Diagrama E-R de la Base de Datos](Imagenes/Veterinaria_MimejorAmigo.png)
 
     DUEÑOS ||--o{ DIRECCION : "registra / posee"
     DUEÑOS ||--o{ MASCOTA : "es dueño de"
@@ -81,7 +82,7 @@ graph TD
 
 ---
 
-### Descripción del Flujo Relacional
+### Descripción del Flujo de Relacion de la Base de Datos
 
 1. **Gestión de Dueños y Ubicación (`Dueños` ↔ `Direccion`):**
    * **Relación (1 a N):** Un cliente/dueño se identifica por su `Cedula` (Primary Key) y puede tener asociadas una o varias direcciones registradas a través del campo foráneo `Dueños_Cedula`.
