@@ -1,6 +1,6 @@
-CREATE DATABASE TALLER_3_MYSQL;
+CREATE DATABASE Veterinaria_mi_mejor_amigo;
 
-USE TALLER_3_MYSQL;
+USE Veterinaria_mi_mejor_amigo;
 
 CREATE TABLE Direccion (
     id_Direccion INT PRIMARY KEY AUTO_INCREMENT,
@@ -11,7 +11,7 @@ CREATE TABLE Direccion (
     Numero_de_Casa VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE Dueños (
+CREATE TABLE Duenos (
     Cedula VARCHAR(20) PRIMARY KEY,
     Nombre_completo VARCHAR(100) NOT NULL,
     Telefono VARCHAR(20) NOT NULL,
@@ -27,8 +27,15 @@ CREATE TABLE Mascotas (
     Edad INT NOT NULL,
     Sexo VARCHAR(100) NOT NULL,
     Vacunado BOOLEAN NOT NULL,
-    id_Dueño VARCHAR(20),
-    FOREIGN KEY (id_Dueño) REFERENCES Dueños(Cedula)
+    id_Dueno VARCHAR(20), -- Cambiado a VARCHAR(20) para coincidir exactamente con Cedula
+    FOREIGN KEY (id_Dueno) REFERENCES Duenos(Cedula)
+);
+
+CREATE TABLE Servicios (
+    id_Servicio INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre_de_servicio VARCHAR(200) NOT NULL,
+    Descripcion_servicio VARCHAR(300) NOT NULL,
+    Precio DECIMAL(10, 2) NOT NULL
 );
 
 CREATE TABLE Visitas (
@@ -40,17 +47,10 @@ CREATE TABLE Visitas (
     FOREIGN KEY (id_Mascota) REFERENCES Mascotas(id_Mascota)
 );
 
-CREATE TABLE Servicios (
-    id_Servicio INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre_de_servicio VARCHAR(200) NOT NULL,
-    Descripcion_servicio VARCHAR(300) NOT NULL,
-    Precio DECIMAL(10, 2) NOT NULL
-);
-
 CREATE TABLE Tratamientos (
     id_Tratamiento INT PRIMARY KEY AUTO_INCREMENT,
     Nombre_tratamiento VARCHAR(100) NOT NULL,
-    Observaciones_tratamiento VARCHAR(500) NOT NULL
+    Observaciones_tratamiento VARCHAR(500) NOT NULL,
     id_Visita INT,
     FOREIGN KEY (id_Visita) REFERENCES Visitas(id_Visita)
 );
